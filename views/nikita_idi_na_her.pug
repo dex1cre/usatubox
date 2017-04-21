@@ -1,0 +1,36 @@
+html
+  head
+    meta(charset="utf-8")
+    title Nikita idi na her
+    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", crossorigin="anonymous")
+  body
+    .container
+      form(method="post" action="/ninh-new")
+        .form-group
+          label(for="name") Наименование:
+          input(type="text" name="name" id="name" placeholder="Наименование").form-control
+        .form-group
+          label(for="description") Описание:
+          input(type="text" name="description" id="description" placeholder="Описание").form-control
+        .form-group
+          label(for="price") Цена:
+          input(type="text" name="price" id="price" placeholder="Цена").form-control
+        .form-group
+          label(for="count") Количество:
+          input(type="text" name="count" id="count" placeholder="Количество").form-control
+        .form-group
+          label(for="category") Категория:
+          select(name="category" id="category").form-control
+            for i in category
+              option(value=i.id)= i.name
+        .form-group
+          label(for="img") Картинка:
+          input(type="text" name="img" id="img" placeholder="Введите ссылку на картинку").form-control
+        button.btn.btn-primary Создать
+    hr
+    .container
+      form(method="post" action="/find-tov")
+        .form-group
+          label(for="id") id:
+          input(type="text" name="id" id="id" placeholder="Введите id").form-control
+        button.btn.btn-primary Найти!
