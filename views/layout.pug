@@ -1,0 +1,104 @@
+html
+  head
+    meta(charset="utf-8")
+    title usatubox
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous")
+    link(rel="stylesheet" href="css/style.css")
+  body
+    .container.top-menu-container(style='position: relative;')
+      .logo
+        img(src="img/logo.jpg" style="position: absolute; top: -20px; left: 60px; width: 130px;")
+        div(style="position: absolute; top: -5px; left: 200px; font-size: 35pt;") UsatuBox
+      .menu
+        ul
+          li
+            span.glyphicon.glyphicon-home(style="margin-right: 5px;")
+            a(href="/" style="font-size: 12pt;")  Главная
+          if login
+            li
+              span.glyphicon.glyphicon-shopping-cart(style="margin-right: 10px;")
+                a(href="/basket" style="font-size: 12pt;") Корзина
+            li= login
+            li
+              a(href="/exit").btn.btn-danger Выйти
+          else
+            li
+              a(href="/registration").btn.btn-primary Регистрация
+            li
+              a(href="/enter").btn.btn-success Войти!
+    block index
+    block registration
+    block enter
+    block basket
+    script(src="js/jquery-3.2.0.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous")
+    //script(src="js/script.js")
+    script.
+      $(function() {
+        $(".index-container .left-menu ul li").click(function() {
+          $('i.right-here').hide();
+          $(this).children('i.right-here').show();
+          var cl_li = $(this).attr('class');
+          $(".tovar-list .row").hide();
+          $("."+cl_li).delay(300).fadeIn(100);
+        });
+        
+        $(".to-basket").click(function() {
+          $(this).parents('.price-tov').parents('.caption')
+            .parents('.other-tov').next('.shadow-white')
+            .fadeIn(300);
+          $(this).parents('.price-tov').parents('.caption')
+            .parents('.other-tov').prev('.form-to-backet')
+            .fadeIn(300);
+        });
+        
+        $(".form-to-backet .close").click(function() {
+          $(this).parents('.form-to-backet').next('.other-tov')
+            .next('.shadow-white').fadeOut(300);
+          $(this).parents('.form-to-backet')
+            .prev('.loading').hide();
+          $(this).parents('.form-to-backet').fadeOut(300);
+        });
+        
+        //ajaxxx-------
+        
+        $('.ready-to-basket').click(function() {
+          $(this).addClass("this-button");
+          $(this).parents('.form-to-backet').fadeOut(300);
+          $(this).parents('.form-to-backet')
+            .next('.other-tov').next('.shadow-white')
+            .css({
+            'opacity': '1'
+          });
+          $(this).parents('.form-to-backet')
+            .prev('.loading').fadeIn(400);
+            
+          $.ajax({
+            url: '/to-basket',
+            type: 'POST',
+            data: {
+              id: $(this).prev('.form-group').children('input[name="id"]').val(),
+              count: $(this).prev('.form-group').children('input[name="count"]').val()
+            },
+            success: function(data) {
+              if(data.data == "Okay") {
+                $('.this-button').parents('.form-to-backet')
+                  .prev('.loading').children('.loading-img')
+                  .hide();
+                $('.this-button').parents('.form-to-backet')
+                  .prev('.loading').children('.okay-img')
+                  .show();
+                $('.this-button').parents('.form-to-backet')
+                  .prev('.loading').delay(1000).fadeOut(500);
+                $('.this-button').parents('.form-to-backet')
+                  .next('.other-tov').next('.shadow-white')
+                  .delay(1000).fadeOut(500);
+                  
+              } else {
+                aler("Введены не все поля!");
+              }
+            }
+          });
+        });
+      });

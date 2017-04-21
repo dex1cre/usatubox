@@ -1,0 +1,32 @@
+extends layout
+block basket
+  .container
+    .row
+      if order != ""
+        .col-md-7.col-sm-12.col-xs-12
+          table.table.table-striped.table-hover.table-condensed
+            tr
+              th №
+              th Наименование
+              th Количество
+              th Цена
+            - k = 0
+            for i in tov
+              for j in order
+                if i.id == j.id_tov
+                  - k++
+                  tr
+                    td= k
+                    td= i.name
+                    td= j.count
+                    td= i.price + " руб."
+        .col-md-4.col-sm-12.col-xs-12(style="position: relative;")
+          .block-about-order
+            .block-price
+              p.itog Итого: 
+                span 25 руб.
+            .block-status
+              form(method="post" action="/to-basket-see")
+                button.btn.btn-success Отправить
+      else
+        h1(style="text-align: center;") Ваша заявка принята!

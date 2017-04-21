@@ -1,0 +1,21 @@
+extends layout
+block registration
+  .container
+    .form-block
+      .title-form-block Регистрация
+      .form-form-block
+        form(method="post" action="/registration-site")
+          .form-group
+            label(for="login") Логин:
+            input(type="text" name="login" id="login" placeholder="dex1cre").form-control
+          .form-group
+            label(for="password") Пароль:
+            input(type="password" name="password" id="password" placeholder="hellobitches12!%=D").form-control
+          .form-group
+            label(for="vk_link") Страница Вконтакте:
+            input(type="text" name="vk_link" id="vk_link" placeholder="https://vk.com/emilkalol").form-control
+          button.btn.btn-primary(style="margin: 0 auto; width: 150px; display: block;") Регистрация
+  style.
+    .top-menu-container {
+      display: none;
+    }

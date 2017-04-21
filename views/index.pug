@@ -1,0 +1,46 @@
+extends layout
+block index
+  style.
+    .tovar-list .row {
+      display: none;
+    }
+    
+    .tovar-list .row:first-child {
+      display: block;
+    }
+    
+  .container.index-container
+    .row
+      .col-md-3.col-sm-3.col-xs-12.left-menu
+        ul
+          for i in rows
+            li(class="tov-"+i.id)= i.name
+              i.glyphicon.glyphicon-chevron-right.right-here
+      .col-md-8.col-sm-8.col-xs-12.tovar-list
+        - k = 1
+        for i in tovar
+          .row(class="tov-"+k)
+            for j in i
+              .col-md-4.col-sm-6.col-xs-6.block-tov
+                .thumbnail
+                  .loading
+                    img(src="img/loading.gif").loading-img
+                    img(src="img/okay.gif" style="display: none;").okay-img
+                  .form-to-backet
+                    .close.glyphicon.glyphicon-remove(style="top: -30px; right: -15px;")
+                    .form-group
+                      label(for="count") Введите количество:
+                      input(type="text" name="count" placeholder="Например: 10").form-control
+                      input(type="text" name="id" value=j.id style="display: none;")
+                    button.btn.btn-success(style="margin-top: 10px;").ready-to-basket Отправить!
+                  .other-tov
+                    .title-tov= j.name
+                    .img-tov
+                      img(src=j.img alert="noneman!")
+                    .caption
+                      p.description-tov= j.description
+                      .price-tov= j.price + " руб."
+                        if login
+                          span.btn.btn-primary.to-basket В корзину
+                  .shadow-white
+          - k++

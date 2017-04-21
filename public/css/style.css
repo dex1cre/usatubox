@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+}
+
+.form-block {
+  margin: 50px auto;
+
+  width: 300px;
+}
+
+.title-form-block {
+  margin: 10px 0;
+
+  font-size: 28pt;
+  text-align: center;
+}
+
+.index-container {
+  margin-top: 30px;
+}
+
+.index-container .left-menu ul li {
+  position: relative;
+  margin-top: 1px;
+  padding: 10px;
+
+  box-shadow: 0 0 1px 0;
+
+  cursor: pointer;
+
+  display: block;
+}
+
+.index-container .left-menu ul li:hover {
+  box-shadow: 0 1px 5px 0 #337ab7;
+}
+
+.right-here {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+
+  display: none;
+}
+
+.block-tov .thumbnail {
+  position: relative;
+  padding: 10px;
+}
+
+.block-tov .thumbnail .title-tov {
+  font-size: 13pt;
+}
+
+.block-tov .thumbnail .img-tov img {
+  height: 200px;
+}
+
+.block-tov .thumbnail .description-tov {
+  height: 60px;
+  overflow: hidden;
+}
+
+.block-tov .price-tov {
+  font-size: 15pt;
+}
+
+.block-tov .price-tov .to-basket {
+  margin-left: 20px;
+
+  cursor: pointer;
+}
+
+.form-to-backet {
+  position: absolute;
+  top: 60px;
+
+  text-align: center;
+
+  z-index: 10;
+  display: none;
+}
+
+.shadow-white {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 100%;
+  background: white;
+
+  opacity: 0.8;
+
+  z-index: 5;
+  display: none;
+}
+
+.loading {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  margin-left: -30px;
+
+  width: 60px;
+
+  display: none;
+  z-index: 10;
+}
+
+.loading img {
+  width: 60px;
+}
+
+.block-about-order {
+  position: fixed;
+}
+
+.block-price {
+  padding: 10px;
+
+  width: 300px;
+  background: rgba(0,0,0, .09);
+}
+
+.block-price p {
+  font-size: 25pt;
+}
+
+.block-price p span {
+  font-size: 15pt;
+}
+
+.block-status {
+  margin-top: 15px;
+}
+
+.block-status span {
+  font-size: 13pt;
+  display: block
+}
+
+.top-menu-container {
+  margin-top: 30px;
+  margin-bottom: 70px;
+}
+
+.top-menu-container .menu {
+  margin-right: 100px;
+
+  float: right;
+}
+
+.top-menu-container .menu ul li {
+  margin-right: 15px;
+
+  display: inline-block;
+}
