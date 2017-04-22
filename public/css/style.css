@@ -53,8 +53,7 @@
 }
 
 .block-tov .thumbnail .img-tov img {
-  width: 100%;
-  height: 200px;
+  max-width: 100%;
 }
 
 .block-tov .thumbnail .description-tov {

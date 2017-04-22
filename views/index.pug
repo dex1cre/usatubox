@@ -11,12 +11,17 @@ block index
     
   .container.index-container
     .row
-      .col-md-3.col-sm-3.col-xs-12.left-menu
+      .col-md-3.col-sm-4.col-xs-4.left-menu
         ul
+          - k = 0
           for i in rows
+            - k++
             li(class="tov-"+i.id)= i.name
-              i.glyphicon.glyphicon-chevron-right.right-here
-      .col-md-8.col-sm-8.col-xs-12.tovar-list
+              if k == 1
+                i(style="display: block;").glyphicon.glyphicon-chevron-right.right-here
+              else
+                i.glyphicon.glyphicon-chevron-right.right-here
+      .col-md-8.col-sm-8.col-xs-8.tovar-list
         - k = 1
         for i in tovar
           .row(class="tov-"+k)
